@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TimeTable</title>
+    <link href="../../resources/bootstrap-5.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../../resources/jquery-3.6.0.min.js"></script>
+    <script src="updateContent.js"></script>
+    <script src="loadFileSubmit.js"></script>
+</head>
+<body>
+<!-- Welcome section -->
+<section id="welcomeTxt" class="p-4 bg-dark bg-gradient text-light">
+    <div class="container position-relative">
+        <h1 class="text-center"></h1>
+        <a href="../logout" class="btn btn-outline-danger btn-sm position-absolute start-0 top-50 translate-middle">Logout</a>
+    </div>
+</section>
+
+<!-- File upload section -->
+<section class="p-2 bg-secondary bg-gradient text-light">
+    <div class="container">
+        <div class="d-md-flex justify-content-center align-items-center">
+            <h3 class="fs-6 text-nowrap px-3 mb-0">File loader</h3>
+            <form action="loadfile" id="loadForm" enctype="multipart/form-data" method="POST">
+            <div class="input-group">
+                    <input name="" type="file" class="form-control" id="inputGroupFile">
+                    <button class="btn btn-outline-dark text-light" type="submit">Upload</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Main section -->
+<section class="p-4">
+    <div class="container">
+        <div class="d-lg-flex justify-content-around align-items-baseline gap-5">
+            <div class="table-responsive pb-0">
+                <table class="table table-striped table-responsive table-hover text-center table-bordered align-middle">
+                <thead>
+                <tr class="table-dark">
+                    <th>Owner</th>
+                    <th>Days</th>
+                    <th>Hours</th>
+                    <th>Classes</th>
+                    <th>Teachers</th>
+                    <th>Subjects</th>
+                    <th>Hard Rules</th>
+                    <th>Soft Rules</th>
+                    <th>Solving users</th>
+                    <th>Max fitness reached</th>
+                    <th>Solve</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+            </div>
+            <div class="table-responsive pt-3">
+                <table class="table table-striped text-center table-bordered">
+                    <thead>
+                    <tr class="table-primary">
+                        <th>Online Users</th>
+                    </tr>
+                    </thead>
+                    <tbody id="usersList">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="fileModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p id="bodyModalLabel"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../resources/bootstrap-5.1.1-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

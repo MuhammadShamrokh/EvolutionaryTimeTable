@@ -1,0 +1,27 @@
+.status{
+    -fx-text-fill: blue;
+    -fx-font-weight: bold;
+    -fx-background-color: #d5d5d5;
+}
+
+#filePath{
+    -fx-text-fill: #35353a;
+}
+
+.preferencesGrid{
+    -fx-border-color: #b6b6b6;
+}
+
+.titled-pane > *.content
+{
+    -fx-background-image: url("/Application/Images/whiteBack.jpg");
+}
+
+.scroll-pane > .viewport {
+    -fx-background-image: url("/Application/Images/whiteBack.jpg");
+}
+
+.root
+{
+    -fx-background-image: url("/Application/Images/whiteBack.jpg");
+}

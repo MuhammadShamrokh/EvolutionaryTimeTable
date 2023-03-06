@@ -1,0 +1,81 @@
+.root
+{
+    -fx-accent: #1e74c6;
+    -fx-focus-color: -fx-accent;
+    -fx-base: #ffeaa0;
+    -fx-control-inner-background: derive(-fx-base, 35%);
+    -fx-control-inner-background-alt: -fx-control-inner-background ;
+}
+
+.label
+{
+    -fx-font-family: "Verdana";
+}
+
+.status{
+    -fx-text-fill: blue;
+    -fx-font-weight: bold;
+    -fx-background-color: #d5d5d5;
+}
+
+.check-box
+{
+    -fx-text-fill: black;
+}
+
+#filePath{
+    -fx-text-fill: #35353a;
+}
+
+.preferencesGrid{
+    -fx-border-color: #b6b6b6;
+}
+
+.titled-pane
+{
+    -fx-text-fill: black;
+    -fx-font-family: "Verdana";
+}
+
+.titled-pane > .title
+{
+    -fx-background-color: -fx-box-border, -fx-inner-border, #e8b430;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+    -fx-padding: 0.166667em 0.833333em 0.25em 0.833333em; /* 2 10 3 10 */
+}
+
+.titled-pane > *.content
+{
+    -fx-background-color:
+            -fx-box-border,
+            #ffeaa0;
+    -fx-background-insets: 0, 0 1 1 1;
+    -fx-padding: 0.167em;
+    -fx-background-image: url("/Application/Images/yellowBack.jpg");
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #ffeaa0;
+    -fx-background-image: url("/Application/Images/yellowBack.jpg");
+}
+
+.grid-pane
+{
+    -fx-border-color: white;
+}
+
+.separator *.line {
+    -fx-background-color: #3C3C3C;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+}
+
+.scroll-bar{
+    -fx-background-color: derive(-fx-base,45%)
+}
+
+.rectangle
+{
+    -fx-fill: #e8b430;
+}

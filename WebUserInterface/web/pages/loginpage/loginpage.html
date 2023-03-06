@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="../../resources/bootstrap-5.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../../resources/jquery-3.6.0.min.js"></script>
+    <script src="loginpage.js"></script>
+
+
+</head>
+<body>
+
+<section class="vh-100" style="background-image: url('../../images/bgImage.png');
+    background-size:cover;
+    opacity: .25;
+    position: absolute;
+    background-position:center;
+    top:0;bottom:0;left:0;right:0;">
+</section>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem; opacity: 1;">
+                    <div class="card-body p-5 text-center">
+
+                        <h3 class="mb-5">Welcome!</h3>
+
+                        <form id="loginForm" action="login" method="get">
+                        <div class="form-floating mb-5">
+                            <input name="username" type="text" class="form-control" id="floatingInput" placeholder="User Name">
+                            <label for="floatingInput">User Name</label>
+                        </div>
+
+                        <button class="btn btn-primary btn-lg" type="submit">Login</button>
+                        </form>
+                        <div id="errormessage"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="../../resources/bootstrap-5.1.1-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

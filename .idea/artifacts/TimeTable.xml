@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="TimeTable">
+    <output-path>$PROJECT_DIR$/out/artifacts/TimeTable</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="WebUserInterface" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="artifact" artifact-name="LogicEngine:jar" />
+          <element id="library" level="project" name="gson-2.8.2" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="WebUserInterface/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script src="resources/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            $.ajax({
+                data: "",
+                url: "index",
+                timeout:4000,
+                success:function(response){
+                    window.location.replace(response);
+                },
+                error:function(response){
+                    console.log("Error with index servlet");
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>

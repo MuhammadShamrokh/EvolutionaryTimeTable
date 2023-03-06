@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EvolutinaryTimeTable.iml" filepath="$PROJECT_DIR$/EvolutinaryTimeTable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaFXUserInterface/JavaFXUserInterface.iml" filepath="$PROJECT_DIR$/JavaFXUserInterface/JavaFXUserInterface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LogicEngine/LogicEngine.iml" filepath="$PROJECT_DIR$/LogicEngine/LogicEngine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WebUserInterface/WebUserInterface.iml" filepath="$PROJECT_DIR$/WebUserInterface/WebUserInterface.iml" />
+    </modules>
+  </component>
+</project>

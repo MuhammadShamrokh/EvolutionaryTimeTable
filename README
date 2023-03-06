@@ -1,0 +1,11 @@
+A complex timetable building program based on an evolutionary algorithm, with web and desktop UI’s.
+
+The logical engine is an independent thread-safe module with a lot of configuration preferences,
+to control the evolutionary algorithm and run it in the most efficient way.
+The engine has the ability to extract the initial data and settings from an XML file.
+
+The JavaFX desktop application is a multi-threaded well designed program with three different themes.
+It enables the user to set and run the algorithm, see its progress and watch the results.
+
+The web application added the options to sign in and register to the site, upload multiple XML files,
+solve other users timetables and watch their results.

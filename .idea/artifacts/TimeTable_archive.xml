@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="TimeTable archive">
+    <output-path>$PROJECT_DIR$/out/artifacts/TimeTable_archive</output-path>
+    <root id="archive" name="TimeTable archive.war">
+      <element id="artifact" artifact-name="TimeTable" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TimeTable</title>
+    <link href="../../resources/bootstrap-5.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../../resources/jquery-3.6.0.min.js"></script>
+    <script src="../../resources/chart.min.js"></script>
+    <script src="progressGraph.js"></script>
+    <script src="bestSolutionPrinter.js"></script>
+    <script src="fileData.js"></script>
+    <script src="algoReference.js"></script>
+    <script src="mutationManagement.js"></script>
+    <script src="algopageContentUpdate.js"></script>
+    <script src="controls.js"></script>
+    <script src="activatedAlgoCheck.js"></script>
+    <script src="bestSolution.js"></script>
+
+</head>
+<body>
+<!-- Welcome section -->
+<section class="p-4 bg-dark bg-gradient text-light">
+    <div class="container position-relative">
+        <h1 class="text-center">Algorithm Management</h1>
+        <h4 class="text-center">User: <span id="userName"></span></h4>
+        <a href="../logout" class="btn btn-outline-danger btn-sm position-absolute start-0 top-50 translate-middle">Logout</a>
+        <a href="algo-leave" class="btn btn-outline-primary btn-sm position-absolute end-0 top-50 translate-middle">Return to Home Page</a>
+    </div>
+</section>
+
+<!-- File Data Section -->
+<section class="p-4 bg-secondary bg-gradient">
+    <div class="container-fluid">
+    <div class="accordion" id="fileDataAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="fileData-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#fileData-collapseOne">
+                    File Data
+                </button>
+            </h2>
+            <div id="fileData-collapseOne" class="accordion-collapse collapse">
+                <div id="fileData" class="accordion-body">
+                    <div class="container-fluid">
+                        <div class="d-flex flex-row flex-wrap justify-content-between p-1">
+
+
+                                <table class="table table-striped table-hover text-center table-bordered align-middle caption-top w-auto">
+                                    <caption>Teachers</caption>
+                                    <thead>
+                                    <tr class="table-primary">
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Pref. Work Hours</th>
+                                        <th>Subjects</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="teachersTableBody"></tbody>
+                                </table>
+
+
+
+                                <table class="table table-striped table-hover text-center table-bordered align-middle caption-top w-auto">
+                                    <caption>Classes</caption>
+                                    <thead>
+                                    <tr class="table-primary">
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Subjects</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="classesTableBody"></tbody>
+                                </table>
+
+
+
+                                <table class="table table-striped table-hover text-center table-bordered align-middle caption-top w-auto">
+                                    <caption>Subjects</caption>
+                                    <thead>
+                                    <tr class="table-primary">
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="subjectsTableBody"></tbody>
+                                </table>
+
+
+
+                                <table class="table table-striped table-hover text-center table-bordered align-middle caption-top w-auto">
+                                    <caption>Rules</caption>
+                                    <thead>
+                                    <tr class="table-primary">
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="rulesTableBody"></tbody>
+                                </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Algo Preferences Section -->
+<section class="p-4 bg-light bg-gradient">
+    <div class="container-fluid">
+        <div class="accordion" id="algoPrefAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="algoPref-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#algoPref-collapseOne">
+                        Algorithm Preferences
+                    </button>
+                </h2>
+                <div id="algoPref-collapseOne" class="accordion-collapse collapse">
+                    <div class="container-fluid px-4 my-4">
+                    <div class="row">
+                    <form class="col border-end" id="algoRefForm" action="algoReferences" method="GET">
+                        <!-- Stop Conditions -->
+                        <label for="stopConditions" class="form-label">Stop Conditions</label>
+                        <div class="row py-2" id="stopConditions">
+                            <div class="col-5">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <span>Generations</span>
+                                    </div>
+                                    <div class="input-group-text">
+                                        <input class="form-check-input mt-0" type="checkbox" value="true" name="generationsCheck" id="reqGenerationCHK">
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Number" name="generationsText" id="reqGenerationTXT">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <span>Fitness</span>
+                                    </div>
+                                    <div class="input-group-text">
+                                        <input class="form-check-input mt-0" type="checkbox" value="true" name="fitnessCheck" id="reqFitnessCHK">
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="1-100" name="fitnessText" id="reqFitnessTXT">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <span>Time</span>
+                                    </div>
+                                    <div class="input-group-text">
+                                        <input class="form-check-input mt-0" type="checkbox" value="true" name="timeCheck" id="reqTimeCHK">
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Minutes" name="timeText" id="reqTimeTXT">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Selection -->
+                        <label for="selection" class="form-label">Selection</label>
+                        <div class="row py-2" id="selection">
+                            <div class="col-4">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="selectionType">Type</label>
+                                    <select class="form-select" id="selectionType" name="selectionType">
+                                        <option value="" selected></option>
+                                        <option value="Truncation" >Truncation</option>
+                                        <option value="RouletteWheel">RouletteWheel</option>
+                                        <option value="Tournament">Tournament</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <span>Elitism</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Number" id="elitism" name="selectionElitism">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div id="percentOption" class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <span id="percentSpan">Percent</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="1-100" name="selectionPercent" id="selectionPercent">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div id="pteOption" class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <span>PTE</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="0-1" name="selectionPTE" id="pte">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Crossover -->
+                        <label for="crossover" class="form-label">Crossover</label>
+                        <div class="row py-2" id="crossover">
+                            <div class="col-4">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="crossoverType">Type</label>
+                                    <select class="form-select" id="crossoverType" name="crossoverType">
+                                        <option value="" selected></option>
+                                        <option value="DayTimeOriented" >DayTimeOriented</option>
+                                        <option value="AspectOriented">AspectOriented</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <span>Cutting Points</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Number" name="crossoverCutting" id="cuttingPoints">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div id="aspectOption" class="input-group mb-3">
+                                    <label class="input-group-text" for="aspect">Aspect</label>
+                                    <select class="form-select" id="aspect" name="crossoverAspect">
+                                        <option value="" selected></option>
+                                        <option value="T">Teacher</option>
+                                        <option value="C">Class</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Initial Population -->
+                        <label for="initialize" class="form-label">Initialize</label>
+                        <div class="row py-2" id="initialize">
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <span>Initial Population</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Number" name="initialPopulation" id="initial">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Submit Button -->
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-3">
+                                <button class="btn btn-primary" type="submit" id="submitBtn">Set Preferences</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col">
+                        <!-- Mutations -->
+                        <label for="mutationsForm" class="form-label">Mutations</label>
+                        <form action="mutation" class="row py-2" id="mutationsForm" method="POST">
+                            <div class="col-auto">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="mutationType">Type</label>
+                                    <select class="form-select" id="mutationType" name="mutationName">
+                                        <option value="" selected></option>
+                                        <option value="FLIPPING">Flipping</option>
+                                        <option value="SIZER">Sizer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <span>Probability</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="0-1" name="mutationProbability" id="probability">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-text">
+                                        <span>Tupples</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Number" name="mutationTupples">
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div id="componentOption" class="input-group mb-3">
+                                    <label class="input-group-text" for="component">Component</label>
+                                    <select class="form-select" id="component" name="mutationComponent">
+                                        <option value="" selected></option>
+                                        <option value="T" >Teacher</option>
+                                        <option value="C">Class</option>
+                                        <option value="S" >Subject</option>
+                                        <option value="D">Day</option>
+                                        <option value="H" >Hour</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-sm btn-primary mb-0" id="addNewMutation" type="submit">Add New</button>
+                            </div>
+                            <div class="row mt-4 justify-content-center">
+                            <div class="col">
+                                <div class="table-responsive pb-0">
+                                    <table class="table table-striped table-responsive table-hover text-center table-bordered align-middle">
+                                        <thead>
+                                        <tr class="table-primary">
+                                            <th>Type</th>
+                                            <th>Probability</th>
+                                            <th>Tupples</th>
+                                            <th>Component</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="mutationsTableBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Controls Section -->
+<section class="p-4 bg-light bg-gradient border">
+    <div class="container-fluid">
+        <div class="row px-2" id="controlsRow">
+            <div class="col-auto">
+                <button type="button" class="btn" id="startBtn" style="background-image: url('../../images/play.png');
+                    background-position:center; width: 40px; height: 40px"></button>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn" id="pauseBtn" style="background-image: url('../../images/pause.png');
+                    background-position:center; width: 40px; height: 40px"></button>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn" id="stopBtn" style="background-image: url('../../images/stop.png');
+                    background-position:center; width: 40px; height: 40px"></button>
+            </div>
+            <div class="col-auto">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <span>Show Every</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Number" id="showEvery" name="showEvery">
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <span>Status</span>
+                    </div>
+                    <label type="text" class="form-control bg-secondary" style="--bs-bg-opacity: .2;" id="statusLine" name="statusLine">
+                    </label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <span>Updates</span>
+                    </div>
+                    <label type="text" class="form-control bg-secondary" style="--bs-bg-opacity: .2;" id="updatesLine" name="updatesLine">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Section -->
+<section class="p-4 border">
+    <div class="container-fluid">
+        <div class="row px-2">
+            <div class="col">
+                <h6 class="border-bottom text-center bg-light bg-gradient">Results</h6>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="showValue">Show Results By</label>
+                            <select class="form-select" id="showValue" name="showValue">
+                                <option value="" selected></option>
+                                <option value="Raw" >Raw</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Class">Class</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-1 align-bottom">
+                        <button id="bestSolutionButton" type="button" class="btn btn-success">Show</button>
+                    </div>
+                </div>
+                <div id="bestSolutionContent">
+
+                </div>
+            </div>
+            <div class="col-3 border-start">
+                <!--Graph-->
+                <h6 class="border-bottom text-center bg-light bg-gradient">Progress Graph</h6>
+                <canvas id="progressGraph" class="mb-4"></canvas>
+
+                <h6 class="border-bottom text-center bg-light bg-gradient">Solving Users</h6>
+                <div class="table-responsive pb-0">
+                    <table class="table table-striped table-responsive table-hover text-center table-bordered align-middle">
+                        <thead>
+                        <tr class="table-primary align-middle">
+                            <th>Name</th>
+                            <th>Generations</th>
+                            <th>Max Fitness</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="solvingTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Progress Bars -->
+<section class="fixed-bottom p-2 bg-secondary" style="--bs-bg-opacity: 0.2">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <div class="text-black">Generations</div>
+            </div>
+            <div class="col">
+                <div class="progress mt-1">
+                    <div id="generationProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="text-black">Fitness</div>
+            </div>
+            <div class="col">
+                <div class="progress mt-1">
+                    <div id="fitnessProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="text-black">Time</div>
+            </div>
+            <div class="col">
+                <div class="progress mt-1">
+                    <div id="timeProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Modal -->
+<div class="modal fade" id="algoRefModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p id="bodyModalLabel"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--activate algo modal-->
+<div class="modal fade" id="activateModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="activateTitleModalLabel">Activate algorithm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p id="activateBodyModalLabel">Warning, old activation data will be lost,<br>Would you like to continue?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="modalActivateBTN" type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes,Run algorithm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Mutation Modal -->
+<div class="modal fade" id="mutationModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content" id="updateMutationForm" action="mutationUpdate">
+            <div class="modal-header" id="mutationUpdateHeader">
+                <h5 class="modal-title">Update Mutation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-between">
+                    <div class="input-group mb-3 p-2">
+                        <label class="input-group-text" for="mutationUpdateType">Type</label>
+                        <select class="form-select" id="mutationUpdateType" name="mutationName">
+                            <option value="FLIPPING" selected>Flipping</option>
+                            <option value="SIZER">Sizer</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3 p-2">
+                        <div class="input-group-text">
+                            <span>Probability</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="0-1" name="mutationProbability" id="probabilityUpdate">
+                    </div>
+
+                    <div class="input-group mb-3 p-2">
+                        <div class="input-group-text">
+                            <span>Tupples</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Number" name="mutationTupples" id="tupplesUpdate">
+                    </div>
+
+                    <div class="input-group mb-3 p-2">
+                        <label class="input-group-text" for="componentUpdate">Component</label>
+                        <select class="form-select" id="componentUpdate" name="mutationComponent">
+                            <option value="T" selected>Teacher</option>
+                            <option value="C">Class</option>
+                            <option value="S" selected>Subject</option>
+                            <option value="D">Day</option>
+                            <option value="H" selected>Hour</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Other algo references modal-->
+<div class="modal fade" id="anotherUserModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="anotherUserHeader"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid"  id="anotherUserBody"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../resources/bootstrap-5.1.1-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
